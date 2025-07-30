@@ -27,10 +27,10 @@
                             <table class="table table-sm">
                                 <thead>
                                     <tr>
-                                        <th>Judul</th>
+                                        <th>Title</th>
                                         <th>Deadline</th>
                                         <th>Status</th>
-                                        <th>Sisa Hari</th>
+                                        <th>Days Left</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -82,7 +82,7 @@
                             <div class="card bg-danger text-white">
                                 <div class="card-body">
                                     <h3>{{ $incompleteTasks->count() }}</h3>
-                                    <p>Belum Selesai</p>
+                                    <p>Not Completed</p>
                                 </div>
                             </div>
                         </div>
@@ -93,7 +93,7 @@
                         <div class="col-md-6">
                             <div class="card">
                                 <div class="card-header">
-                                    <h5>Tasks Belum Selesai</h5>
+                                    <h5>Not Completed Tasks</h5>
                                 </div>
                                 <div class="card-body">
                                     @if($incompleteTasks->count() > 0)
@@ -101,10 +101,10 @@
                                         <table class="table table-striped">
                                             <thead>
                                                 <tr>
-                                                    <th>Judul</th>
+                                                    <th>Title</th>
                                                     <th>Status</th>
                                                     <th>Deadline</th>
-                                                    <th>Aksi</th>
+                                                    <th>Action</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -126,7 +126,7 @@
                                         </table>
                                     </div>
                                     @else
-                                    <p class="text-muted">Tidak ada task yang belum selesai.</p>
+                                    <p class="text-muted">There are no unfinished tasks.</p>
                                     @endif
                                 </div>
                             </div>
@@ -143,7 +143,7 @@
                                         <table class="table table-striped">
                                             <thead>
                                                 <tr>
-                                                    <th>Judul</th>
+                                                    <th>Title</th>
                                                     <th>Deadline</th>
                                                     <th>Completed At</th>
                                                 </tr>
@@ -161,11 +161,11 @@
                                     </div>
                                     @if($completedTasks->count() > 5)
                                     <div class="text-center">
-                                        <a href="{{ route('tasks.index') }}" class="btn btn-sm btn-outline-primary">Lihat Semua</a>
+                                        <a href="{{ route('tasks.index') }}" class="btn btn-sm btn-outline-primary">View All</a>
                                     </div>
                                     @endif
                                     @else
-                                    <p class="text-muted">Belum ada task yang diselesaikan.</p>
+                                    <p class="text-muted">There are no completed tasks.</p>
                                     @endif
                                 </div>
                             </div>
