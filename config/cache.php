@@ -69,7 +69,7 @@ return [
                     'weight' => 100,
                 ],
             ],
-        ],
+        ], 
 
         'redis' => [
             'driver' => 'redis',
@@ -106,3 +106,4 @@ return [
     'prefix' => env('CACHE_PREFIX', Str::slug(env('APP_NAME', 'laravel'), '_').'_cache_'),
 
 ];
+
