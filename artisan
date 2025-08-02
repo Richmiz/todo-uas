@@ -7,12 +7,15 @@ use Symfony\Component\Console\Input\ArgvInput;
 define('LARAVEL_START', microtime(true));
 
 // Register the Composer autoloader...
+// This line is necessary to load the Composer dependencies.
 require __DIR__.'/vendor/autoload.php';
 
 // Bootstrap Laravel and handle the command...
+// This line is necessary to bootstrap the Laravel application and handle the command line input.
 /** @var Application $app */
 $app = require_once __DIR__.'/bootstrap/app.php';
 
 $status = $app->handleCommand(new ArgvInput);
+
 
 exit($status);

@@ -10,11 +10,19 @@ class TaskController extends Controller
 
     public function index()
     {
-        $tasks = Task::orderBy('due_date', 'asc')->orderBy('created_at', 'desc')->get();
-        $pendingCount = Task::where('status', 'pending')->count();
-        $inProgressCount = Task::where('status', 'in_progress')->count();
-        $completedCount = Task::where('status', 'completed')->count();
-        
+        $query = Task::where('user_id', auth()->id());
+        if ($search = request('q')) {
+            $query->where(function($q) use ($search) {
+                $q->where('title', 'like', "%$search%")
+                  ->orWhere('description', 'like', "%$search%");
+            });
+        }
+        $tasks = $query->orderBy('due_date', 'asc')
+            ->orderBy('created_at', 'desc')
+            ->get();
+        $pendingCount = Task::where('user_id', auth()->id())->where('status', 'pending')->count();
+        $inProgressCount = Task::where('user_id', auth()->id())->where('status', 'in_progress')->count();
+        $completedCount = Task::where('user_id', auth()->id())->where('status', 'completed')->count();
         return view('tasks.index', compact('tasks', 'pendingCount', 'inProgressCount', 'completedCount'));
     }
 
@@ -38,7 +46,8 @@ class TaskController extends Controller
             'description' => $request->description,
             'is_completed' => $request->has('is_completed'),
             'due_date' => $request->due_date,
-            'status' => $request->status
+            'status' => $request->status,
+            'user_id' => auth()->id(),
         ]);
         return redirect()->route('tasks.index')
             ->with('success', 'Tugas Telah Berhasil ditambahkan');
@@ -53,7 +62,7 @@ class TaskController extends Controller
 
     public function edit(string $id)
     {
-        $task = Task::find($id);
+        $task = Task::where('id', $id)->where('user_id', auth()->id())->firstOrFail();
         return view('tasks.edit', compact('task'));
     }
 
@@ -66,14 +75,18 @@ class TaskController extends Controller
             'due_date' => 'nullable|date',
             'status' => 'required|in:pending,in_progress,completed'
         ]);
-        $task = Task::find($id);
-        $task->update([
+        $task = Task::where('id', $id)->where('user_id', auth()->id())->firstOrFail();
+        $data = [
             'title' => $request->title,
             'description' => $request->description,
             'is_completed' => $request->has('is_completed'),
             'due_date' => $request->due_date,
             'status' => $request->status
-        ]);
+        ];
+        if ($request->has('is_completed')) {
+            $data['status'] = 'completed';
+        }
+        $task->update($data);
         return redirect()->route('tasks.index')
             ->with('success', 'Tugas Telah Berhasil di Update');
     }
@@ -81,7 +94,7 @@ class TaskController extends Controller
 
     public function destroy(string $id)
     {
-        $task = Task::find($id);
+        $task = Task::where('id', $id)->where('user_id', auth()->id())->firstOrFail();
         $task->delete();
         return redirect()->route('tasks.index')
             ->with('success', 'Tugas Telah Berhasil Menghapus Data');

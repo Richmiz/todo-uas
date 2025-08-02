@@ -9,6 +9,25 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        @media (min-width: 640px) {
+            .desktop-image {
+                display: block !important;
+            }
+            .mobile-image {
+                display: none !important;
+            }
+        }
+        @media (max-width: 639px) {
+            .desktop-image {
+                display: none !important;
+            }
+            .mobile-image {
+                display: block !important;
+            }
+        }
+    </style>
 </head>
 <body style="font-family: 'Inter', sans-serif; background-color: #F8F9FA; min-height: 100vh; display: flex; justify-content: center;">
     <div style="background: #F8F9FA; border-radius: 24px; padding: 40px; width: 100%;">
@@ -29,18 +48,22 @@
         <div style="text-align: center; margin-bottom: 60px;">
             <h1 style="font-size: 48px; font-weight: 700; color: #333; margin-bottom: 16px;">Manage Your Task.</h1>
             <p style="font-size: 16px; color: #666; margin-bottom: 32px; line-height: 1.6;">
-                Encan boards, lists, and cards enable you to organize and prioritize your projects in a fun,<br>
-                flexible, and rewarding way. Let's started 😊
+                Easily manage your tasks with boards, lists, and cards. Organize and prioritize your projects in a fun,<br>
+                flexible, and rewarding way. Let's get started 😊
             </p>
         </div>
          <!-- Dashboard Preview -->
-        <div style="background: white; border-radius: 20px; padding: 32px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); margin-top: 40px; display: flex; align-items: center; justify-content: center; gap: 40px;">
-            <img src="/images/welcome-left.png" alt="Welcome Left" style="max-width: 220px; width: 100%; height: auto;">
-            <div style="text-align: center; max-width: 400px;">
-                <h2 style="font-size: 28px; font-weight: 700; color: #333; margin-bottom: 20px;">We will give you a focus, from work to play</h2>
-                <a href="{{ route('register') }}" style="display: inline-block; background: #FF6B35; color: white; padding: 14px 32px; border: none; border-radius: 8px; font-size: 16px; font-weight: 600; cursor: pointer; transition: all 0.3s; text-decoration: none;">Get Started</a>
-            </div>
-            <img src="/images/welcome-right.png" alt="Welcome Right" style="max-width: 220px; width: 100%; height: auto;">
+        <div style="background: white; border-radius: 20px; padding: 32px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); margin-top: 40px;">
+            <!-- Desktop Version -->
+            <div style="display: flex; align-items: center; justify-content: center; gap: 40px; flex-wrap: wrap;">
+                <img src="/images/welcome-left.png" alt="Welcome Left" class="desktop-image" style="max-width: 220px; width: 100%; height: auto;">
+                <div style="text-align: center; max-width: 400px; width: 100%; padding: 20px;">
+                    <!-- Mobile Version (Center Image) -->
+                    <img src="/images/welcome-center.png" alt="Welcome Center" class="mobile-image" style="max-width: 280px; width: 100%; height: auto; margin-bottom: 24px; margin-left: auto; margin-right: auto;">
+                    <h2 style="font-size: 28px; font-weight: 700; color: #333; margin-bottom: 20px;">We will give you a focus, from work to play</h2>
+                    <a href="{{ route('register') }}" style="display: inline-block; background: #FF6B35; color: white; padding: 14px 32px; border: none; border-radius: 8px; font-size: 16px; font-weight: 600; cursor: pointer; transition: all 0.3s; text-decoration: none;">Get Started</a>
+                </div>
+                <img src="/images/welcome-right.png" alt="Welcome Right" class="desktop-image" style="max-width: 220px; width: 100%; height: auto;">
         </div>
         
     </div>
