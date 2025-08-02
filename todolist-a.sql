@@ -178,6 +178,7 @@ INSERT INTO `tasks` (`id`, `title`, `description`, `is_completed`, `created_at`,
 (1, 'halo', 'asdasdasd', 1, '2025-07-01 01:50:47', '2025-07-01 01:51:00', NULL, 'pending'),
 (2, 'asdasdajsdasjn', 'ioassdoiasdasoipdjoi', 0, '2025-07-01 01:56:00', '2025-07-01 01:56:00', NULL, 'pending');
 
+
 -- --------------------------------------------------------
 
 --
